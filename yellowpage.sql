@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS "categories";
 CREATE TABLE "categories" (
     "category_id"	TEXT NOT NULL,
+    "category_code"	TEXT NOT NULL,
     "category_name"	TEXT NOT NULL,
     "category_description"	TEXT NOT NULL,
     "is_visible"	TEXT NOT NULL,
