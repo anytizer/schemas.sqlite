@@ -1,8 +1,10 @@
 DROP TABLE IF EXISTS "customers";
 CREATE TABLE "customers" (
 	"customer_id"	TEXT NOT NULL,
-	"customer_name"	TEXT NOT NULL,
+    "customer_email"	TEXT NOT NULL,
+    "customer_password"	TEXT NOT NULL,
 	"customer_reference"	TEXT NOT NULL,
+	"customer_name"	TEXT NOT NULL,
 	"customer_contact"	TEXT NOT NULL,
 	PRIMARY KEY("customer_id")
 );
@@ -35,5 +37,5 @@ CREATE TABLE "resolutions" (
 	"resolution_description"	TEXT NOT NULL,
 	PRIMARY KEY("resolution_id"),
 	FOREIGN KEY("complaint_id") REFERENCES "complaints"("complaint_id") ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY("status_id") REFERENCES "resolutions"("resolution_id") ON UPDATE CASCADE ON DELETE CASCADE
+	FOREIGN KEY("status_id") REFERENCES "statuses"("status_id") ON UPDATE CASCADE ON DELETE CASCADE
 );
