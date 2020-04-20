@@ -33,8 +33,8 @@ CREATE TABLE "businesses" (
     PRIMARY KEY("business_id")
 );
 
-DROP TABLE IF EXISTS "business_categories";
-CREATE TABLE "business_categories" (
+DROP TABLE IF EXISTS "businesses_categories";
+CREATE TABLE "businesses_categories" (
     "business_category_id"	TEXT NOT NULL,
     "business_id"	TEXT NOT NULL,
     "category_id"	TEXT NOT NULL,
