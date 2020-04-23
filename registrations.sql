@@ -31,11 +31,13 @@ CREATE TABLE "codes" (
 DROP TABLE IF EXISTS "persons";
 CREATE TABLE "persons" (
 	"person_id"	TEXT NOT NULL,
+	"code_id"	TEXT NOT NULL,
 	"person_fullname"	TEXT NOT NULL,
 	"person_firstname"	TEXT NOT NULL,
 	"person_middlename"	TEXT NOT NULL,
 	"person_lastname"	TEXT NOT NULL,
 	"person_dob"	TEXT NOT NULL,
+	FOREIGN KEY ("code_id") REFERENCES "codes"("code_id") ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY ("person_id")
 );
 
