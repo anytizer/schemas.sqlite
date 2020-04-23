@@ -34,6 +34,7 @@ CREATE TABLE "resolutions" (
 	"complaint_id"	TEXT NOT NULL,
 	"status_id"	TEXT NOT NULL,
 	"resolution_on"	TEXT NOT NULL,
+	"resolution_by"	TEXT NOT NULL,
 	"resolution_description"	TEXT NOT NULL,
 	PRIMARY KEY("resolution_id"),
 	FOREIGN KEY("complaint_id") REFERENCES "complaints"("complaint_id") ON UPDATE CASCADE ON DELETE CASCADE,
