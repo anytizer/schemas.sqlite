@@ -37,10 +37,13 @@ CREATE TABLE "businesses" (
 
 DROP TABLE IF EXISTS "businesses_categories";
 CREATE TABLE "businesses_categories" (
-    "business_category_id"	TEXT NOT NULL,
-    "business_id"	TEXT NOT NULL,
-    "category_id"	TEXT NOT NULL,
-    PRIMARY KEY("business_category_id")
+	"business_category_id"	TEXT NOT NULL,
+	"category_id"	TEXT NOT NULL,
+	"business_id"	TEXT NOT NULL,
+	PRIMARY KEY("business_category_id"),
+	FOREIGN KEY("category_id") REFERENCES "categories"("category_id") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY("business_id") REFERENCES "businesses"("business_id") ON UPDATE CASCADE ON DELETE CASCADE,
+	UNIQUE ("category_id", "business_id")
 );
 
 DROP TABLE IF EXISTS "addresses";
