@@ -1,3 +1,5 @@
+-- https://github.com/anytizer/open-ideas/tree/master/ideas/yellowpages
+
 DROP TABLE IF EXISTS "categories";
 CREATE TABLE "categories" (
     "category_id"	TEXT NOT NULL,
