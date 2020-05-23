@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Sqlite" id="Project_2432963" database="Sqlite" >
+	<schema name="Default" >
+		<table name="addresses" >
+			<column name="address_id" type="text" jt="-1" mandatory="y" />
+			<column name="person_id" type="text" jt="-1" mandatory="y" />
+			<column name="address_name" type="text" jt="-1" mandatory="y" />
+			<column name="address_address" type="text" jt="-1" mandatory="y" />
+			<column name="address_city" type="text" jt="-1" mandatory="y" />
+			<column name="address_state" type="text" jt="-1" mandatory="y" />
+			<column name="address_postalcode" type="text" jt="-1" mandatory="y" />
+			<column name="address_country" type="text" jt="-1" mandatory="y" />
+			<column name="is_visible" type="text" jt="-1" mandatory="y" />
+			<index name="pk_addresses" unique="PRIMARY_KEY" >
+				<column name="address_id" />
+			</index>
+			<fk name="Fk_addresses" to_schema="Default" to_table="persons" delete_action="cascade" update_action="cascade" >
+				<fk_column name="person_id" pk="person_id" />
+			</fk>
+		</table>
+		<table name="businesses" >
+			<column name="business_id" type="text" jt="-1" mandatory="y" />
+			<column name="person_id" type="text" jt="-1" mandatory="y" />
+			<column name="business_name" type="text" jt="-1" mandatory="y" />
+			<column name="business_license" type="text" jt="-1" mandatory="y" />
+			<column name="business_registration" type="text" jt="-1" mandatory="y" />
+			<column name="established_on" type="text" jt="-1" mandatory="y" />
+			<column name="is_visible" type="text" jt="-1" mandatory="y" />
+			<index name="pk_businesses" unique="PRIMARY_KEY" >
+				<column name="business_id" />
+			</index>
+			<fk name="Fk_businesses" to_schema="Default" to_table="persons" delete_action="cascade" update_action="cascade" >
+				<fk_column name="person_id" pk="person_id" />
+			</fk>
+		</table>
+		<table name="businesses_categories" >
+			<column name="business_category_id" type="text" jt="-1" mandatory="y" />
+			<column name="category_id" type="text" jt="-1" mandatory="y" />
+			<column name="business_id" type="text" jt="-1" mandatory="y" />
+			<index name="pk_businesses_categories" unique="PRIMARY_KEY" >
+				<column name="business_category_id" />
+			</index>
+			<index name="sqlite_autoindex_businesses_categories_2" unique="UNIQUE" >
+				<column name="category_id" />
+				<column name="business_id" />
+			</index>
+			<fk name="Fk_businesses_categories" to_schema="Default" to_table="businesses" delete_action="cascade" update_action="cascade" >
+				<fk_column name="business_id" pk="business_id" />
+			</fk>
+			<fk name="Fk_businesses_categories" to_schema="Default" to_table="categories" delete_action="cascade" update_action="cascade" >
+				<fk_column name="category_id" pk="category_id" />
+			</fk>
+		</table>
+		<table name="categories" >
+			<column name="category_id" type="text" jt="-1" mandatory="y" />
+			<column name="category_code" type="text" jt="-1" mandatory="y" />
+			<column name="category_name" type="text" jt="-1" mandatory="y" />
+			<column name="category_description" type="text" jt="-1" mandatory="y" />
+			<column name="is_visible" type="text" jt="-1" mandatory="y" />
+			<index name="pk_categories" unique="PRIMARY_KEY" >
+				<column name="category_id" />
+			</index>
+		</table>
+		<table name="contacts" >
+			<column name="contact_id" type="text" jt="-1" mandatory="y" />
+			<column name="person_id" type="text" jt="-1" mandatory="y" />
+			<column name="contact_email" type="text" jt="-1" mandatory="y" />
+			<column name="contact_website" type="text" jt="-1" mandatory="y" />
+			<column name="contact_phone" type="text" jt="-1" mandatory="y" />
+			<column name="contact_fax" type="text" jt="-1" mandatory="y" />
+			<column name="is_visible" type="text" jt="-1" mandatory="y" />
+			<index name="pk_contacts" unique="PRIMARY_KEY" >
+				<column name="contact_id" />
+			</index>
+			<fk name="Fk_contacts" to_schema="Default" to_table="persons" delete_action="cascade" update_action="cascade" >
+				<fk_column name="person_id" pk="person_id" />
+			</fk>
+		</table>
+		<table name="credentials" >
+			<column name="credential_id" type="text" jt="-1" mandatory="y" />
+			<column name="person_id" type="text" jt="-1" mandatory="y" />
+			<column name="credential_email" type="text" jt="-1" mandatory="y" />
+			<column name="credential_password" type="text" jt="-1" mandatory="y" />
+			<column name="credential_question" type="text" jt="-1" mandatory="y" />
+			<column name="credential_answer" type="text" jt="-1" mandatory="y" />
+			<column name="is_visible" type="text" jt="-1" mandatory="y" />
+			<index name="pk_credentials" unique="PRIMARY_KEY" >
+				<column name="credential_id" />
+			</index>
+			<index name="sqlite_autoindex_credentials_1" unique="UNIQUE" >
+				<column name="credential_email" />
+			</index>
+			<fk name="Fk_credentials" to_schema="Default" to_table="persons" delete_action="cascade" update_action="cascade" >
+				<fk_column name="person_id" pk="person_id" />
+			</fk>
+		</table>
+		<table name="persons" >
+			<column name="person_id" type="text" jt="-1" mandatory="y" />
+			<column name="person_code" type="text" jt="-1" mandatory="y" />
+			<column name="person_title" type="text" jt="-1" mandatory="y" />
+			<column name="person_firstname" type="text" jt="-1" mandatory="y" />
+			<column name="person_middlename" type="text" jt="-1" mandatory="y" />
+			<column name="person_lastname" type="text" jt="-1" mandatory="y" />
+			<column name="person_nickname" type="text" jt="-1" mandatory="y" />
+			<index name="pk_persons" unique="PRIMARY_KEY" >
+				<column name="person_id" />
+			</index>
+		</table>
+	</schema>
+	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.30.1.jar" driver_desc="Standard" host="localhost" port="7210" instance="D:/htdocs/cloner.py/projects/schemas.sqlite/yellowpage.db" />
+	<layout name="Default Layout" id="Layout_11834f6" show_relation="columns" >
+		<entity schema="Default" name="addresses" color="BED3F4" x="560" y="304" />
+		<entity schema="Default" name="businesses" color="BED3F4" x="560" y="48" />
+		<entity schema="Default" name="businesses_categories" color="BED3F4" x="816" y="48" />
+		<entity schema="Default" name="categories" color="BED3F4" x="1072" y="48" />
+		<entity schema="Default" name="contacts" color="BED3F4" x="304" y="304" />
+		<entity schema="Default" name="credentials" color="BED3F4" x="48" y="304" />
+		<entity schema="Default" name="persons" color="BED3F4" x="304" y="48" />
+	</layout>
+	<layout name="Sample Layout with Tools" id="Layout_1a3ed2d" show_column_type="y" show_relation="columns" >
+		<entity schema="Default" name="addresses" color="BED3F4" x="592" y="560" />
+		<entity schema="Default" name="businesses" color="BED3F4" x="864" y="304" />
+		<entity schema="Default" name="businesses_categories" color="BED3F4" x="592" y="304" />
+		<entity schema="Default" name="categories" color="BED3F4" x="320" y="80" />
+		<entity schema="Default" name="contacts" color="BED3F4" x="320" y="560" />
+		<entity schema="Default" name="credentials" color="BED3F4" x="48" y="560" />
+		<entity schema="Default" name="persons" color="BED3F4" x="320" y="304" />
+		<callout x="320" y="192" pointer="Round" >
+			<comment><![CDATA[This is a sample layout with tools. 
+For better understanding the schema create multiple layouts with same or different tables. 
+Double-click on any table, column or foreign key to edit.]]></comment>
+		</callout>
+		<group name="persons" color="ECF0F7" >
+			<entity schema="Default" name="persons" />
+			<entity schema="Default" name="businesses_categories" />
+			<entity schema="Default" name="businesses" />
+			<entity schema="Default" name="addresses" />
+			<entity schema="Default" name="contacts" />
+			<entity schema="Default" name="credentials" />
+			<entity schema="Default" name="categories" />
+		</group>
+		<script name="Sample SQL Editor" id="Editor_10913fb" language="SQL" >
+			<string><![CDATA[SELECT person_id, person_code, person_title, person_firstname, person_middlename, person_lastname, person_nickname
+FROM
+	persons s;]]></string>
+		</script>
+		<browser id="Browse_4e665d5" name="Sample Relational Data Browse" confirm_updates="y" >
+			<browse_table schema="Default" entity="persons" x="20" y="20" width="400" height="300" >
+				<browse_table schema="Default" entity="addresses" fk="Fk_addresses" x="440" y="20" width="500" height="350" />
+			</browse_table>
+		</browser>
+		<query id="Query_15a8d07" name="Sample Query Builder" >
+			<query_table schema="Default" name="persons" alias="p" x="48" y="48" >
+				<column name="person_id" />
+				<column name="person_code" />
+				<column name="person_title" />
+				<column name="person_firstname" />
+				<column name="person_middlename" />
+				<column name="person_lastname" />
+				<column name="person_nickname" />
+				<query_table schema="Default" name="addresses" alias="a" x="272" y="48" fk="Fk_addresses" type="Inner Join" >
+					<column name="address_id" />
+					<column name="person_id" />
+					<column name="address_name" />
+					<column name="address_address" />
+					<column name="address_city" />
+					<column name="address_state" />
+					<column name="address_postalcode" />
+					<column name="address_country" />
+					<column name="is_visible" />
+				</query_table>
+			</query_table>
+		</query>
+	</layout>
+</project>

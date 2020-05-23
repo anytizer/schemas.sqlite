@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Sqlite" id="Project_19cceeb" database="Sqlite" >
+	<schema name="Default" >
+		<table name="batches" >
+			<column name="batch_id" type="text" jt="-1" mandatory="y" />
+			<column name="year_id" type="text" jt="-1" mandatory="y" />
+			<column name="batch_name" type="text" jt="-1" mandatory="y" />
+			<column name="batch_code" type="text" jt="-1" mandatory="y" />
+			<index name="pk_batches" unique="PRIMARY_KEY" >
+				<column name="batch_id" />
+			</index>
+			<fk name="Fk_batches" to_schema="Default" to_table="years" delete_action="cascade" update_action="cascade" >
+				<fk_column name="year_id" pk="year_id" />
+			</fk>
+		</table>
+		<table name="codes" >
+			<column name="code_id" type="text" jt="-1" mandatory="y" />
+			<column name="batch_id" type="text" jt="-1" mandatory="y" />
+			<column name="code_snippet" type="text" jt="-1" mandatory="y" />
+			<column name="code_password" type="text" jt="-1" mandatory="y" />
+			<column name="generated_on" type="text" jt="-1" mandatory="y" />
+			<column name="generated_by" type="text" jt="-1" mandatory="y" />
+			<index name="pk_codes" unique="PRIMARY_KEY" >
+				<column name="code_id" />
+			</index>
+			<index name="sqlite_autoindex_codes_1" unique="UNIQUE" >
+				<column name="batch_id" />
+				<column name="code_snippet" />
+			</index>
+			<fk name="Fk_codes" to_schema="Default" to_table="batches" delete_action="cascade" update_action="cascade" >
+				<fk_column name="batch_id" pk="batch_id" />
+			</fk>
+		</table>
+		<table name="contacts" >
+			<column name="contact_id" type="text" jt="-1" mandatory="y" />
+			<column name="person_id" type="text" jt="-1" mandatory="y" />
+			<column name="address_name" type="text" jt="-1" mandatory="y" />
+			<column name="address_apartment" type="text" jt="-1" mandatory="y" />
+			<column name="address_building" type="text" jt="-1" mandatory="y" />
+			<column name="address_street" type="text" jt="-1" mandatory="y" />
+			<column name="address_city" type="text" jt="-1" mandatory="y" />
+			<column name="address_state" type="text" jt="-1" mandatory="y" />
+			<column name="address_postalcode" type="text" jt="-1" mandatory="y" />
+			<column name="address_country" type="text" jt="-1" mandatory="y" />
+			<column name="contact_phone" type="text" jt="-1" mandatory="y" />
+			<column name="contact_fax" type="text" jt="-1" mandatory="y" />
+			<column name="contact_email" type="text" jt="-1" mandatory="y" />
+			<column name="contact_website" type="text" jt="-1" mandatory="y" />
+			<index name="pk_contacts" unique="PRIMARY_KEY" >
+				<column name="contact_id" />
+			</index>
+			<fk name="Fk_contacts" to_schema="Default" to_table="persons" delete_action="cascade" update_action="cascade" >
+				<fk_column name="person_id" pk="person_id" />
+			</fk>
+		</table>
+		<table name="enrollments" >
+			<column name="enrollment_id" type="text" jt="-1" mandatory="y" />
+			<column name="batch_id" type="text" jt="-1" mandatory="y" />
+			<column name="person_id" type="text" jt="-1" mandatory="y" />
+			<column name="scored_value" type="text" jt="-1" mandatory="y" />
+			<column name="checked_by" type="text" jt="-1" mandatory="y" />
+			<column name="is_accepted" type="text" jt="-1" mandatory="y" />
+			<index name="pk_enrollments" unique="PRIMARY_KEY" >
+				<column name="enrollment_id" />
+			</index>
+			<fk name="Fk_enrollments" to_schema="Default" to_table="batches" delete_action="cascade" update_action="cascade" >
+				<fk_column name="batch_id" pk="batch_id" />
+			</fk>
+			<fk name="Fk_enrollments" to_schema="Default" to_table="persons" delete_action="cascade" update_action="cascade" >
+				<fk_column name="person_id" pk="person_id" />
+			</fk>
+		</table>
+		<table name="persons" >
+			<column name="person_id" type="text" jt="-1" mandatory="y" />
+			<column name="code_id" type="text" jt="-1" mandatory="y" />
+			<column name="person_fullname" type="text" jt="-1" mandatory="y" />
+			<column name="person_firstname" type="text" jt="-1" mandatory="y" />
+			<column name="person_middlename" type="text" jt="-1" mandatory="y" />
+			<column name="person_lastname" type="text" jt="-1" mandatory="y" />
+			<column name="person_dob" type="text" jt="-1" mandatory="y" />
+			<index name="pk_persons" unique="PRIMARY_KEY" >
+				<column name="person_id" />
+			</index>
+			<fk name="Fk_persons" to_schema="Default" to_table="codes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="code_id" pk="code_id" />
+			</fk>
+		</table>
+		<table name="years" >
+			<column name="year_id" type="text" jt="-1" mandatory="y" />
+			<column name="year_year" type="text" jt="-1" mandatory="y" />
+			<index name="pk_years" unique="PRIMARY_KEY" >
+				<column name="year_id" />
+			</index>
+			<index name="sqlite_autoindex_years_1" unique="UNIQUE" >
+				<column name="year_year" />
+			</index>
+		</table>
+	</schema>
+	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.30.1.jar" driver_desc="Standard" host="localhost" port="7210" instance="D:/htdocs/cloner.py/projects/schemas.sqlite/registrations/registrations.db" />
+	<layout name="Default Layout" id="Layout_16f0296" show_relation="columns" >
+		<entity schema="Default" name="batches" color="BED3F4" x="240" y="64" />
+		<entity schema="Default" name="codes" color="BED3F4" x="176" y="432" />
+		<entity schema="Default" name="contacts" color="BED3F4" x="704" y="128" />
+		<entity schema="Default" name="enrollments" color="BED3F4" x="336" y="288" />
+		<entity schema="Default" name="persons" color="BED3F4" x="384" y="48" />
+		<entity schema="Default" name="years" color="BED3F4" x="48" y="96" />
+	</layout>
+	<layout name="Sample Layout with Tools" id="Layout_5c2fbfb" show_column_type="y" show_relation="columns" >
+		<entity schema="Default" name="batches" color="BED3F4" x="592" y="176" />
+		<entity schema="Default" name="codes" color="BED3F4" x="592" y="432" />
+		<entity schema="Default" name="contacts" color="BED3F4" x="48" y="432" />
+		<entity schema="Default" name="enrollments" color="BED3F4" x="320" y="432" />
+		<entity schema="Default" name="persons" color="BED3F4" x="320" y="176" />
+		<entity schema="Default" name="years" color="BED3F4" x="816" y="176" />
+		<callout x="592" y="80" pointer="Round" >
+			<comment><![CDATA[This is a sample layout with tools. 
+For better understanding the schema create multiple layouts with same or different tables. 
+Double-click on any table, column or foreign key to edit.]]></comment>
+		</callout>
+		<group name="persons" color="ECF0F7" >
+			<entity schema="Default" name="persons" />
+			<entity schema="Default" name="batches" />
+			<entity schema="Default" name="codes" />
+			<entity schema="Default" name="enrollments" />
+			<entity schema="Default" name="contacts" />
+			<entity schema="Default" name="years" />
+		</group>
+		<script name="Sample SQL Editor" id="Editor_1964224" language="SQL" >
+			<string><![CDATA[SELECT batch_id, year_id, batch_name, batch_code
+FROM
+	batches s;]]></string>
+		</script>
+		<browser id="Browse_a8aaea" name="Sample Relational Data Browse" confirm_updates="y" >
+			<browse_table schema="Default" entity="batches" x="20" y="20" width="400" height="300" >
+				<browse_table schema="Default" entity="codes" fk="Fk_codes" x="440" y="20" width="500" height="350" >
+					<browse_table schema="Default" entity="persons" fk="Fk_persons" x="960" y="20" width="500" height="350" />
+				</browse_table>
+			</browse_table>
+		</browser>
+		<query id="Query_193cec5" name="Sample Query Builder" >
+			<query_table schema="Default" name="batches" alias="b" x="48" y="48" >
+				<column name="batch_id" />
+				<column name="year_id" />
+				<column name="batch_name" />
+				<column name="batch_code" />
+				<query_table schema="Default" name="codes" alias="c" x="224" y="48" fk="Fk_codes" type="Inner Join" >
+					<column name="code_id" />
+					<column name="batch_id" />
+					<column name="code_snippet" />
+					<column name="code_password" />
+					<column name="generated_on" />
+					<column name="generated_by" />
+					<query_table schema="Default" name="persons" alias="p" x="432" y="48" fk="Fk_persons" type="Inner Join" >
+						<column name="person_id" />
+						<column name="code_id" />
+						<column name="person_fullname" />
+						<column name="person_firstname" />
+						<column name="person_middlename" />
+						<column name="person_lastname" />
+						<column name="person_dob" />
+					</query_table>
+				</query_table>
+			</query_table>
+		</query>
+	</layout>
+</project>
